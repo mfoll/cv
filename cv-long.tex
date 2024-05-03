@@ -81,6 +81,7 @@
 % Control PDF metadata and links
 \usepackage[colorlinks=true]{hyperref}
 
+\usepackage{graphicx}
 
 % Template configuration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,6 +161,14 @@
 \newcommand{\Website}[1]{\href{https://#1}{#1}}
 \newcommand{\Preprint}[1]{Preprint: \href{https://doi.org/#1}{#1}}
 \newcommand{\GitHub}[1]{GitHub: \href{https://github.com/#1}{#1}}
+
+\newcommand{\Citations}[1]{%
+  \includegraphics[height=\fontcharht\font`\B]{icon-hot-highly-papers.png} #1 citations%
+}
+\newcommand{\CitationsGold}[1]{%
+  \includegraphics[height=\fontcharht\font`\B]{icon-hot-highly-papers_gold.png} #1 citations%
+}
+\newcommand{\OpenAccess}{\includegraphics[height=\fontcharht\font`\B]{OpenAccess.png}}
 
 % Define command to insert month name and year as date
 \newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
@@ -302,7 +311,7 @@ with Dr. Lynnette Fernandez-Cuesta.
 \ \\
 77 publications in international peer-reviewed scientific journals, including 9 publications as first/co-first author, and 14 publications as last/co-last/corresponding author.
 
-13'273 total citations, h-index: 42 (source: Google Scholar)
+13'415 total citations, h-index: 42 (source: \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar}).
 
 Full list available at \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar} and  \href{https://www.ncbi.nlm.nih.gov/myncbi/matthieu.foll.1/bibliography/public/}{My NCBI Bibliography}.
 
@@ -353,7 +362,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
   \Year{2020} &
-  \textbf{Needlestack bioinformatics pipeline} | \GitHub{mfoll/needlestack} 
+  \textbf{Needlestack bioinformatics pipeline} | \GitHub{IARCbioinfo/needlestack} 
   \newline
   \textit{An ultra-sensitive variant caller for multi-sample next generation sequencing data}.
   \newline
@@ -465,18 +474,18 @@ I have been advocating for open science since the beginning of my career, with a
 \begin{EntriesTableYear}
 
 \Year{2024\textsuperscript{\#}}  &
-  \textbf{Multi-omic dataset of patient-derived tumor organoids of neuroendocrine neoplasms}.
+  \textbf{Multi-omic dataset of patient-derived tumor organoids of neuroendocrine neoplasms}. \OpenAccess
   \newline
   \textit{Gigascience}.
   \DOI{10.1093/gigascience/giae008}; \PMID{38451475} 
   \newline
   Alcala N, Voegele C, Mangiante L, Sexton-Oates A, Clevers H, Fernandez-Cuesta L, Dayton TL, \Me.
     \newline
-    \GitHub{IARCbioinfo/MS\_panNEN\_organoids}.
+    \GitHub{IARCbioinfo/MS\_panNEN\_organoids}. 
   \\
 
 \Year{2023}  &
-  \textbf{Druggable growth dependencies and tumor evolution analysis in patient-derived organoids of neuroendocrine neoplasms from multiple body sites}.
+  \textbf{Druggable growth dependencies and tumor evolution analysis in patient-derived organoids of neuroendocrine neoplasms from multiple body sites}. \OpenAccess
   \newline
   \textit{Cancer Cell}.
   \DOI{10.1016/j.ccell.2023.11.007}; \PMID{38086335} 
@@ -485,7 +494,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2023}  &
-  \textbf{Spotlight on Small-Cell Lung Cancer and Other Lung Neuroendocrine Neoplasms}.
+  \textbf{Spotlight on Small-Cell Lung Cancer and Other Lung Neuroendocrine Neoplasms}. \OpenAccess
   \newline
   \textit{American Society of Clinical Oncology Educational Book}.
   \DOI{10.1200/EDBK\_390794}; \PMID{37229617} 
@@ -494,7 +503,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2023\textsuperscript{\#}}  &
-  \textbf{Multiomic analysis of malignant pleural mesothelioma identifies molecular axes and specialized tumor profiles driving intertumor heterogeneity}.
+  \textbf{Multiomic analysis of malignant pleural mesothelioma identifies molecular axes and specialized tumor profiles driving intertumor heterogeneity}. \Citations{24} \OpenAccess
   \newline
   \textit{Nature Genetics}.
   \DOI{10.1038/s41588-023-01321-1}; \PMID{36928603} 
@@ -503,7 +512,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2023}  &
-  \textbf{HaloAE: A Local Transformer Auto-Encoder for Anomaly Detection and Localization Based on HaloNet}.
+  \textbf{HaloAE: A Local Transformer Auto-Encoder for Anomaly Detection and Localization Based on HaloNet}. \OpenAccess
   \newline
   \textit{Proceedings of the 18th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications (VISIGRAPP 2023)}.
   \DOI{10.5220/0011865900003417}
@@ -514,7 +523,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2022\textsuperscript{\#}}  &
-  \textbf{A molecular phenotypic map of malignant pleural mesothelioma}.
+  \textbf{A molecular phenotypic map of malignant pleural mesothelioma}. \OpenAccess
   \newline
   \textit{Gigascience}.
   \DOI{10.1093/gigascience/giac128}; \PMID{36705549} 
@@ -534,7 +543,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\ 
 
 \Year{2020\textsuperscript{\#}}  &
-  \textbf{A molecular map of lung neuroendocrine neoplasms}.
+  \textbf{A molecular map of lung neuroendocrine neoplasms}. \OpenAccess
   \newline
   \textit{Gigascience}.
   \DOI{10.1093/gigascience/giaa112}; \PMID{33124659} 
@@ -545,7 +554,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2020\textsuperscript{\#}}  &
-  \textbf{Needlestack: an ultra-sensitive variant caller for multi-sample next generation sequencing data}.
+  \textbf{Needlestack: an ultra-sensitive variant caller for multi-sample next generation sequencing data}. \OpenAccess
   \newline
   \textit{NAR Genomics and Bioinformatics}.
   \DOI{10.1093/gigascience/giac128}; \PMID{36705549} 
@@ -556,7 +565,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2020}  &
-  \textbf{EURACAN/IASLC Proposals for Updating the Histologic Classification of Pleural Mesothelioma: Towards a More Multidisciplinary Approach}.
+  \textbf{EURACAN/IASLC Proposals for Updating the Histologic Classification of Pleural Mesothelioma: Towards a More Multidisciplinary Approach}. \Citations{147} \OpenAccess
   \newline
   \textit{Journal of Thoracic Oncology}.
   \DOI{10.1016/j.jtho.2019.08.2506}; \PMID{31546041} 
@@ -565,7 +574,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2019\textsuperscript{\#}}  &
-  \textbf{Molecular studies of lung neuroendocrine neoplasms uncover new concepts and entities}.
+  \textbf{Molecular studies of lung neuroendocrine neoplasms uncover new concepts and entities}. \OpenAccess
   \newline
   \textit{Translational Lung Cancer Research}.
   \DOI{10.21037/tlcr.2019.11.08}; \PMID{32038931} 
@@ -574,7 +583,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2019\textsuperscript{\#}}  &
-  \textbf{Redefining malignant pleural mesothelioma types as a continuum uncovers immune-vascular interactions}.
+  \textbf{Redefining malignant pleural mesothelioma types as a continuum uncovers immune-vascular interactions}. \OpenAccess
   \newline
   \textit{EBioMedicine}.
   \DOI{10.1016/j.ebiom.2019.09.003}; \PMID{31648983} 
@@ -583,7 +592,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2019\textsuperscript{\#}}  &
-  \textbf{Integrative and comparative genomic analyses identify clinically relevant pulmonary carcinoid groups and unveil the supra-carcinoids}.
+  \textbf{Integrative and comparative genomic analyses identify clinically relevant pulmonary carcinoid groups and unveil the supra-carcinoids}. \Citations{141} \OpenAccess
   \newline
   \textit{Nature communications}.
   \DOI{10.1038/s41467-019-11276-9}; \PMID{31431620} 
@@ -592,7 +601,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2019}  &
-  \textbf{Linking a mutation to survival in wild mice}.
+  \textbf{Linking a mutation to survival in wild mice}. \Citations{172} \OpenAccess
   \newline
   \textit{Science}.
   \DOI{10.1126/science.aav3824}; \PMID{30705186} 
@@ -601,7 +610,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2018}  &
-  \textbf{Prediction of acute myeloid leukaemia risk in healthy individuals}.
+  \textbf{Prediction of acute myeloid leukaemia risk in healthy individuals}. \CitationsGold{778} \OpenAccess
   \newline
   \textit{Nature}.
   \DOI{10.1038/s41586-018-0317-6}; \PMID{29988082} 
@@ -610,7 +619,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\ 
 
 \Year{2017}  &
-  \textbf{BAP1 Is Altered by Copy Number Loss, Mutation, and/or Loss of Protein Expression in More Than 70\% of Malignant Peritoneal Mesotheliomas}.
+  \textbf{BAP1 Is Altered by Copy Number Loss, Mutation, and/or Loss of Protein Expression in More Than 70\% of Malignant Peritoneal Mesotheliomas}. \OpenAccess
   \newline
   \textit{Journal of Thoracic Oncology}.
   \DOI{10.1016/j.jtho.2016.12.019}; \PMID{28034829} 
@@ -640,9 +649,9 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2014\textsuperscript{*}}  &
-  \textbf{Widespread signals of convergent adaptation to high altitude in Asia and america}.
+  \textbf{Widespread signals of convergent adaptation to high altitude in Asia and America}. \OpenAccess
   \newline
-  \textit{The American Journal of Human Genetics}.
+  \textit{The American Journal of Human Genetics}. 
   \DOI{10.1016/j.ajhg.2014.09.002}; \PMID{25262650} 
   \newline
   \Me, Gaggiotti OE, Daub JT, Vatsiou A, Excoffier L.
@@ -651,7 +660,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
 \Year{2014\textsuperscript{*}}  &
-  \textbf{Adaptive, convergent origins of the pygmy phenotype in African rainforest hunter-gatherers}.
+  \textbf{Adaptive, convergent origins of the pygmy phenotype in African rainforest hunter-gatherers}. \OpenAccess
   \newline
   \textit{Proceedings of the National Academy of Sciences}.
   \DOI{10.1073/pnas.1402875111}; \PMID{25136101} 
@@ -660,7 +669,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
  
  \Year{2014\textsuperscript{*}}  &
-  \textbf{Influenza virus drug resistance: a time-sampled population genetics perspective}.
+  \textbf{Influenza virus drug resistance: a time-sampled population genetics perspective}. \OpenAccess
   \newline
   \textit{PLOS Genetics}.
   \DOI{10.1371/journal.pgen.1004185}; \PMID{24586206} 
@@ -669,7 +678,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
  \Year{2013\textsuperscript{\#}}  &
-  \textbf{Robust demographic inference from genomic and SNP data}.
+  \textbf{Robust demographic inference from genomic and SNP data}. \CitationsGold{1350} \OpenAccess
   \newline
   \textit{PLOS Genetics}.
   \DOI{10.1371/journal.pgen.1003905}; \PMID{24204310} 
@@ -678,7 +687,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
   \Year{2013}  &
-  \textbf{Approximate Bayesian computation}.
+  \textbf{Approximate Bayesian computation}. \CitationsGold{695} \OpenAccess
   \newline
   \textit{PLOS Computational Biology}.
   \DOI{10.1371/journal.pcbi.1002803}; \PMID{23341757} 
@@ -687,7 +696,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
   \Year{2012}  &
-  \textbf{Genomic data reveal a complex making of humans}.
+  \textbf{Genomic data reveal a complex making of humans}. \OpenAccess
   \newline
   \textit{PLOS Genetics}.
   \DOI{10.1371/journal.pgen.1002837}; \PMID{22829785} 
@@ -696,7 +705,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
  \Year{2011\textsuperscript{\#}}  &
-  \textbf{fastsimcoal: a continuous-time coalescent simulator of genomic diversity under arbitrarily complex evolutionary scenarios}.
+  \textbf{fastsimcoal: a continuous-time coalescent simulator of genomic diversity under arbitrarily complex evolutionary scenarios}. \Citations{419} \OpenAccess
   \newline
   \textit{Bioinformatics}.
   \DOI{10.1093/bioinformatics/btr124}; \PMID{21398675} 
@@ -707,16 +716,16 @@ I have been advocating for open science since the beginning of my career, with a
   \\
  
  \Year{2010\textsuperscript{\#}}  &
-  \textbf{Quantifying population structure using the F-model}.
+  \textbf{Quantifying population structure using the F-model}. 
   \newline
   \textit{Molecular Ecology Resources}.
-  \DOI{10.1093/bioinformatics/btr124}; \PMID{21398675} 
+  \DOI{10.1111/j.1755-0998.2010.02873.x}; \PMID{21565093} 
   \newline
   Gaggiotti OE, \Me.
   \\
 
  \Year{2009}  &
-  \textbf{Genetic consequences of range expansions}.
+  \textbf{Genetic consequences of range expansions}. \CitationsGold{1330} 
   \newline
   \textit{Annual Review of Ecology, Evolution, and Systematics}.
   \DOI{10.1146/annurev.ecolsys.39.110707.173414} 
@@ -725,7 +734,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
  \Year{2009\textsuperscript{\#}}  &
-  \textbf{Detecting loci under selection in a hierarchically structured population}.
+  \textbf{Detecting loci under selection in a hierarchically structured population}. \CitationsGold{921} \OpenAccess
   \newline
   \textit{Heredity (Edinb)}.
   \DOI{10.1038/hdy.2009.74}; \PMID{19623208} 
@@ -736,7 +745,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
  \Year{2008\textsuperscript{*}}  &
-  \textbf{A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective}.
+  \textbf{A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective}. \CitationsGold{2867} \OpenAccess
   \newline
   \textit{Genetics}.
   \DOI{10.1534/genetics.108.092221}; \PMID{18780740} 
@@ -747,7 +756,7 @@ I have been advocating for open science since the beginning of my career, with a
   \\
 
  \Year{2006\textsuperscript{*}}  &
-  \textbf{Identifying the environmental factors that determine the genetic structure of populations}.
+  \textbf{Identifying the environmental factors that determine the genetic structure of populations}. \Citations{418} \OpenAccess
   \newline
   \textit{Genetics}.
   \DOI{10.1534/genetics.106.059451}; \PMID{16951078} 
@@ -759,11 +768,15 @@ I have been advocating for open science since the beginning of my career, with a
 
 \end{EntriesTableYear}
 
-*: first/co-first author
+*: first/co-first author.
 \newline
-\textsuperscript{\#}: last/co-last/corresponding author
-
-
+\textsuperscript{\#}: last/co-last/corresponding author.
+\newline
+\Citations{: >20}/year.
+\newline
+\CitationsGold{: >50}/year (on average since publication, source: \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar}).
+\newline
+\OpenAccess \ : Open Access publication.
 \end{document}
 
 
