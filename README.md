@@ -1,12 +1,12 @@
 # Curriculum Vitae
 
-These are the LaTeX sources for my academic CV.
+This repository contains my academic CV, built automaticaly from LaTeX sources using GitHub Actions and rendered on GitHub Pages
 
-**Download** the latest compiled long CV PDF:
-[cv-long.pdf](https://github.com/mfoll/cv/raw/pdf/cv-long.pdf)
+**View** my latest compiled long CV PDF:
+[cv-long.pdf](https://mfoll.github.io/cv/cv-long.pdf)
 
-**Download** the latest compiled one-page CV PDF:
-[cv-one-page.pdf](https://github.com/mfoll/cv/raw/pdf/cv-one-page.pdf)
+**View** my latest compiled one-page CV PDF:
+[cv-one-page.pdf](https://mfoll.github.io/cv/cv-one-page.pdf)
 
 ## Template
 
