@@ -36,11 +36,11 @@ jobs:
           key: conda-${{ runner.os }}-${{ hashFiles('environment.yml') }}
 
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v3
+        uses: conda-incubator/setup-miniconda@v3.1.1
         with:
           environment-file: environment.yml
           activate-environment: cv
-          miniforge-variant: Miniforge
+          miniforge-variant: Miniforge3
           miniforge-version: "latest"
           use-mamba: true
           channel-priority: strict
