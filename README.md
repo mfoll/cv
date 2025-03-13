@@ -1,4 +1,4 @@
-# Curriculum Vitae
+# Matthieu Foll Curriculum Vitae
 
 This repository contains my academic CV, built automaticaly from LaTeX sources using GitHub Actions and rendered on GitHub Pages
 
