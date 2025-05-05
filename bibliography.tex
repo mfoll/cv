@@ -1,0 +1,546 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A clean template for an academic CV. This is a short summary version.
+%
+% Uses tabularx to create two column entries (date and job/edu/citation).
+% Defines commands to make adding entries simpler.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper]{article}
+
+% Useful aliases
+\newcommand{\IARC}{International Agency for Research on Cancer (IARC-WHO)}
+
+% Identifying information
+\newcommand{\Title}{Bibliography }
+\newcommand{\FirstName}{Matthieu}
+\newcommand{\LastName}{Foll}
+\newcommand{\Initials}{M}
+\newcommand{\MyName}{Dr. \FirstName\ \LastName}
+\newcommand{\Me}{\underline{\LastName\ \Initials}}  % For citations
+\newcommand{\Mecolast}{\underline{\LastName\ \Initials\textsuperscript{\#}}}  % For citations
+\newcommand{\Mecofirst}{\underline{\LastName\ \Initials\textsuperscript{\*}}}  % For citations
+\newcommand{\Email}{follm@iarc.who.int}
+\newcommand{\PersonalWebsite}{www.rarecancersgenomics.com}
+\newcommand{\LabWebsite}{www.iarc.who.int/teams-ccg/}
+\newcommand{\ORCID}{0000-0001-9006-8436}
+\newcommand{\GitHubProfile}{mfoll}
+\newcommand{\GitHubOrganization}{IARCbioinfo}
+
+
+% Load packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Full Unicode support for non-ASCII characters
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[TU]{fontenc}
+
+% Set main fonts
+\usepackage[sfdefault]{atkinson}
+\usepackage[ttdefault]{sourcecodepro}
+
+% Icon fonts
+\usepackage{fontawesome5}
+\usepackage{academicons}
+
+% Disable hyphenation
+\usepackage[none]{hyphenat}
+
+% Control the font size
+\usepackage{anyfontsize}
+
+% For fancy and multipage tables
+\usepackage{tabularx}
+\usepackage{ltablex}
+
+% For new environments
+\usepackage{environ}
+
+% Manage dates and times
+\usepackage{datetime}
+
+% Set the page margins
+\usepackage{geometry}
+
+% To get the total page numbers (\pageref{LastPage})
+\usepackage{lastpage}
+
+% Control spacing in enumerates
+\usepackage{enumitem}
+
+% Use custom colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Configure section titles
+\usepackage{titlesec}
+
+% Fancy header configuration
+\usepackage{fancyhdr}
+
+% Control PDF metadata and links
+\usepackage[colorlinks=true]{hyperref}
+
+\usepackage{graphicx}
+
+% Template configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\geometry{%
+  margin=12.5mm,
+  headsep=0mm,
+  headheight=0mm,
+  footskip=5mm,
+  includehead=true,
+  includefoot=true
+}
+
+% Custom colors
+\definecolor{mediumgray}{gray}{0.5}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{mediumblue}{HTML}{2060c2}
+\definecolor{lightblue}{HTML}{a0c3ff}
+
+% No indentation
+\setlength\parindent{0cm}
+
+% Increase the line spacing
+\renewcommand{\baselinestretch}{1.1}
+% and the spacing between rows in tables
+\renewcommand{\arraystretch}{1.25}
+
+% Remove space between items in itemize and enumerate
+\setlist{nosep}
+
+% Set the spacing and format of sections
+\titleformat{\section}
+  {\normalfont\Large\mdseries} % format
+  {} % label
+  {0pt} % separation (left separation for hang)
+  {} % text before title
+  [\titlerule] % text after title
+\titlespacing*{\section}
+  {0pt} % left pad
+  {0.1cm} % before
+  {0cm} % after
+
+% Disable number of sections. Use this instead of "section*" so that the sections still
+% appear as PDF bookmarks. Otherwise, would have to add the table of contents entries
+% manually.
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+% Define a new environment to place all CV entries in a 2-column table.
+% Left column are the dates, right column the entries.
+\newcommand{\TablePad}{\vspace{-0.2cm}}
+\NewEnviron{EntriesTableDuration}{
+\TablePad
+\begin{tabularx}{\textwidth}{@{}p{0.10\textwidth}@{\hspace{0.02\textwidth}}p{0.88\textwidth}@{}}
+  \BODY
+\end{tabularx}
+\TablePad
+}
+\NewEnviron{EntriesTableYear}{
+\TablePad
+\begin{tabularx}{\textwidth}{@{}p{0.05\textwidth}@{\hspace{0.01\textwidth}}p{0.94\textwidth}@{}}
+  \BODY
+\end{tabularx}
+\TablePad
+}
+
+% Macros to set the year and duration on the left column
+\newcommand{\Duration}[2]{\fontsize{10pt}{0}\selectfont \texttt{#1-#2}}
+\newcommand{\Year}[1]{\fontsize{10pt}{0}\selectfont \texttt{#1}}
+\newcommand{\Ongoing}{on}
+\newcommand{\Future}{future}
+
+% Macros to add links and mark publications
+\newcommand{\DOI}[1]{DOI: \href{https://doi.org/#1}{#1}}
+\newcommand{\PMID}[1]{PMID: \href{https://pubmed.ncbi.nlm.nih.gov/#1}{#1}}
+\newcommand{\Website}[1]{\href{https://#1}{#1}}
+\newcommand{\Preprint}[1]{Preprint: \href{https://doi.org/#1}{#1}}
+\newcommand{\GitHub}[1]{GitHub: \href{https://github.com/#1}{#1}}
+
+\newcommand{\Citations}[1]{%
+  \includegraphics[height=\fontcharht\font`\B]{icon-hot-highly-papers.png} #1 citations%
+}
+\newcommand{\CitationsGold}[1]{%
+  \includegraphics[height=\fontcharht\font`\B]{icon-hot-highly-papers_gold.png} #1 citations%
+}
+\newcommand{\OpenAccess}{\includegraphics[height=\fontcharht\font`\B]{OpenAccess.png}}
+
+% Define command to insert month name and year as date
+\newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
+
+% Configure a fancy footer
+\newcommand{\Separator}{\hspace{3pt}|\hspace{3pt}}
+\newcommand{\FooterFont}{\footnotesize\color{mediumgray}}
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{%
+  \FooterFont{}
+  \MyName{}
+  \Separator{}
+  \Title{}
+}
+\rfoot{%
+  \FooterFont{}
+  Last updated: \monthyear\today{}
+  \Separator{}
+  \thepage\space of\space \pageref*{LastPage}
+}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{1pt}
+\preto{\footrule}{\color{lightgray}}
+
+% Metadata for the PDF output and control of hyperlinks
+\hypersetup{
+  colorlinks,
+  allcolors=mediumblue,
+  breaklinks=true,
+  pdftitle={\Title{} - \MyName},
+  pdfauthor={\MyName},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+82 publications in international peer-reviewed scientific journals, including 9 publications as first/co-first author, and 15 publications as last/co-last/corresponding author.
+
+14'406 total citations, h-index: 44 (source: \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar}).
+
+Full list available at \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar} and  \href{https://www.ncbi.nlm.nih.gov/myncbi/matthieu.foll.1/bibliography/public/}{My NCBI Bibliography}.
+
+\section{Selected Publications}
+
+\begin{EntriesTableYear}
+
+\Year{2025\textsuperscript{\#}}  &
+  \textbf{Basic science and translational implications of current knowledge on neuroendocrine tumors}. \OpenAccess
+  \newline
+  \textit{Journal of Clinical Investigation}.
+  \DOI{https://doi.org/10.1172/jci186702}; \PMID{40026252}
+  \newline
+  Fernandez-Cuesta L, Alcala N, Mathian E, Derks J, Thirlwell C, Dayton T, Marinoni I, Perren A, Walter T, \Me.
+  \\
+
+\Year{2024\textsuperscript{\#}}  &
+  \textbf{Assessment of the current and emerging criteria for the histopathological classification of lung neuroendocrine tumours in the lungNENomics project}. \OpenAccess
+  \newline
+  \textit{ESMO Open}.
+  \DOI{https://doi.org/10.1016/j.esmoop.2024.103591}; \PMID{38878324}
+  \newline
+  Mathian E, Drouet Y, Sexton-Oates A, Papotti MG, Pelosi G, \ldots, \Me.
+    \newline
+    \GitHub{https://github.com/IARCbioinfo/LNENBarlowTwins}. 
+  \\
+
+\Year{2024\textsuperscript{\#}}  &
+  \textbf{Multi-omic dataset of patient-derived tumor organoids of neuroendocrine neoplasms}. \OpenAccess
+  \newline
+  \textit{Gigascience}.
+  \DOI{10.1093/gigascience/giae008}; \PMID{38451475} 
+  \newline
+  Alcala N, Voegele C, Mangiante L, Sexton-Oates A, Clevers H, Fernandez-Cuesta L, Dayton TL, \Me.
+    \newline
+    \GitHub{IARCbioinfo/MS\_panNEN\_organoids}. 
+  \\
+
+\Year{2023}  &
+  \textbf{Druggable growth dependencies and tumor evolution analysis in patient-derived organoids of neuroendocrine neoplasms from multiple body sites}. \OpenAccess
+  \newline
+  \textit{Cancer Cell}.
+  \DOI{10.1016/j.ccell.2023.11.007}; \PMID{38086335} 
+  \newline
+  Dayton TL, Alcala N, Moonen L, den Hartigh L, Geurts V, \ldots, \Me, Fernández-Cuesta L, Clevers H.
+  \\
+
+\Year{2023}  &
+  \textbf{Spotlight on Small-Cell Lung Cancer and Other Lung Neuroendocrine Neoplasms}. \OpenAccess
+  \newline
+  \textit{American Society of Clinical Oncology Educational Book}.
+  \DOI{10.1200/EDBK\_390794}; \PMID{37229617} 
+  \newline
+  Fernandez-Cuesta L, Sexton-Oates A, Bayat L, \Me, Lau SCM, Leal T.
+  \\
+
+\Year{2023\textsuperscript{\#}}  &
+  \textbf{Multiomic analysis of malignant pleural mesothelioma identifies molecular axes and specialized tumor profiles driving intertumor heterogeneity}. \Citations{24} \OpenAccess
+  \newline
+  \textit{Nature Genetics}.
+  \DOI{10.1038/s41588-023-01321-1}; \PMID{36928603} 
+  \newline
+  Mangiante L, Alcala N, Sexton-Oates A, Di Genova A, Gonzalez-Perez A, \ldots, \Mecolast, Fernandez-Cuesta L\textsuperscript{\#}.
+  \\
+
+\Year{2023}  &
+  \textbf{HaloAE: A Local Transformer Auto-Encoder for Anomaly Detection and Localization Based on HaloNet}. \OpenAccess
+  \newline
+  \textit{Proceedings of the 18th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications (VISIGRAPP 2023)}.
+  \DOI{10.5220/0011865900003417}
+  \newline
+  Mathian E, Liu H, Fernandez-Cuesta L, Samaras D, \Me, Chen L.
+  \newline
+  \GitHub{IARCbioinfo/HaloAE}.
+  \\
+
+\Year{2022\textsuperscript{\#}}  &
+  \textbf{A molecular phenotypic map of malignant pleural mesothelioma}. \OpenAccess
+  \newline
+  \textit{Gigascience}.
+  \DOI{10.1093/gigascience/giac128}; \PMID{36705549} 
+  \newline
+  Di Genova A, Mangiante L, Sexton-Oates A, Voegele C, Fernandez-Cuesta L, Alcala N, \Me.
+  \newline
+  \GitHub{IARCbioinfo/MESOMICS\_data}.
+  \\
+
+\Year{2021\textsuperscript{\#}}  &
+  \textbf{Challenges in lung and thoracic pathology: molecular advances in the classification of pleural mesotheliomas}.
+  \newline
+  \textit{Virchows Archiv}.
+  \DOI{10.1007/s00428-020-02980-9}; \PMID{33411030} 
+  \newline
+  Fernandez-Cuesta L, Mangiante L, Alcala N, \Me.
+  \\ 
+
+\Year{2020\textsuperscript{\#}}  &
+  \textbf{A molecular map of lung neuroendocrine neoplasms}. \OpenAccess
+  \newline
+  \textit{Gigascience}.
+  \DOI{10.1093/gigascience/giaa112}; \PMID{33124659} 
+  \newline
+  Gabriel AAG, Mathian E, Mangiante L, Voegele C, Cahais V, \ldots, \Me.
+  \newline
+  \GitHub{IARCbioinfo/DRMetrics}.
+  \\
+
+\Year{2020\textsuperscript{\#}}  &
+  \textbf{Needlestack: an ultra-sensitive variant caller for multi-sample next generation sequencing data}. \OpenAccess
+  \newline
+  \textit{NAR Genomics and Bioinformatics}.
+  \DOI{10.1093/gigascience/giac128}; \PMID{36705549} 
+  \newline
+  Delhomme TM, Avogbe PH, Gabriel AAG, Alcala N, Leblay N, \ldots, \Me.
+  \newline
+  \GitHub{IARCbioinfo/needlestack}.
+  \\
+
+\Year{2020}  &
+  \textbf{EURACAN/IASLC Proposals for Updating the Histologic Classification of Pleural Mesothelioma: Towards a More Multidisciplinary Approach}. \Citations{147} \OpenAccess
+  \newline
+  \textit{Journal of Thoracic Oncology}.
+  \DOI{10.1016/j.jtho.2019.08.2506}; \PMID{31546041} 
+  \newline
+  Nicholson AG, Sauter JL, Nowak AK, Kindler HL, Gill RR, \ldots, \Me, \ldots, Galateau-Salle F.
+  \\
+
+\Year{2019\textsuperscript{\#}}  &
+  \textbf{Molecular studies of lung neuroendocrine neoplasms uncover new concepts and entities}. \OpenAccess
+  \newline
+  \textit{Translational Lung Cancer Research}.
+  \DOI{10.21037/tlcr.2019.11.08}; \PMID{32038931} 
+  \newline
+  Fernandez-Cuesta L, \Me.
+  \\
+
+\Year{2019\textsuperscript{\#}}  &
+  \textbf{Redefining malignant pleural mesothelioma types as a continuum uncovers immune-vascular interactions}. \OpenAccess
+  \newline
+  \textit{EBioMedicine}.
+  \DOI{10.1016/j.ebiom.2019.09.003}; \PMID{31648983} 
+  \newline
+  Alcala N, Mangiante L, Le-Stang N, Gustafson CE, Boyault S, \ldots, \Mecolast, Galateau-Salle F\textsuperscript{\#},  Fernandez-Cuesta L\textsuperscript{\#}.
+  \\
+
+\Year{2019\textsuperscript{\#}}  &
+  \textbf{Integrative and comparative genomic analyses identify clinically relevant pulmonary carcinoid groups and unveil the supra-carcinoids}. \Citations{141} \OpenAccess
+  \newline
+  \textit{Nature communications}.
+  \DOI{10.1038/s41467-019-11276-9}; \PMID{31431620} 
+  \newline
+  Alcala N, Leblay N, Gabriel AAG, Mangiante L, Hervas D, \ldots, \Mecolast, Fernandez-Cuesta L\textsuperscript{\#}.
+  \\
+
+\Year{2019}  &
+  \textbf{Linking a mutation to survival in wild mice}. \Citations{172} \OpenAccess
+  \newline
+  \textit{Science}.
+  \DOI{10.1126/science.aav3824}; \PMID{30705186} 
+  \newline
+  Barrett RDH, Laurent S, Mallarino R, Pfeifer SP, Xu CCY, \Me, \ldots, Hoekstra HE.
+  \\
+
+\Year{2018}  &
+  \textbf{Prediction of acute myeloid leukaemia risk in healthy individuals}. \CitationsGold{778} \OpenAccess
+  \newline
+  \textit{Nature}.
+  \DOI{10.1038/s41586-018-0317-6}; \PMID{29988082} 
+  \newline
+  Abelson S, Collord G, Ng SWK, Weissbrod O, Mendelson Cohen N, \ldots, \Me, \ldots, Shlush LI.
+  \\ 
+
+\Year{2017}  &
+  \textbf{BAP1 Is Altered by Copy Number Loss, Mutation, and/or Loss of Protein Expression in More Than 70\% of Malignant Peritoneal Mesotheliomas}. \OpenAccess
+  \newline
+  \textit{Journal of Thoracic Oncology}.
+  \DOI{10.1016/j.jtho.2016.12.019}; \PMID{28034829} 
+  \newline
+  Leblay N, Leprêtre F, Le Stang N, Gautier-Stein A, Villeneuve L, \ldots, \Me, Fernandez-Cuesta L, Brevet M.
+  \\ 
+
+\Year{2016}  &
+  \textbf{The past, present and future of genomic scans for selection}.
+  \newline
+  \textit{Molecular Ecology}.
+  \DOI{10.1111/mec.13493}; \PMID{26745554} 
+  \newline
+  Jensen JD, \Me, Bernatchez L.
+  \\ 
+
+
+\Year{2015\textsuperscript{*}}  &
+  \textbf{WFABC: a Wright-Fisher ABC-based approach for inferring effective population sizes and selection coefficients from time-sampled data}.
+  \newline
+  \textit{Molecular Ecology Resources}.
+  \DOI{10.1111/1755-0998.12280}; \PMID{24834845} 
+  \newline
+  \Me, Shim H, Jensen JD.
+    \newline
+  \GitHub{mfoll/WFABC}.
+  \\
+
+\Year{2014\textsuperscript{*}}  &
+  \textbf{Widespread signals of convergent adaptation to high altitude in Asia and America}. \OpenAccess
+  \newline
+  \textit{The American Journal of Human Genetics}. 
+  \DOI{10.1016/j.ajhg.2014.09.002}; \PMID{25262650} 
+  \newline
+  \Me, Gaggiotti OE, Daub JT, Vatsiou A, Excoffier L.
+    \newline
+  \GitHub{mfoll/BayeScanHierachical}.
+  \\
+
+\Year{2014\textsuperscript{*}}  &
+  \textbf{Adaptive, convergent origins of the pygmy phenotype in African rainforest hunter-gatherers}. \OpenAccess
+  \newline
+  \textit{Proceedings of the National Academy of Sciences}.
+  \DOI{10.1073/pnas.1402875111}; \PMID{25136101} 
+  \newline
+  Perry GH,  \Mecofirst, Grenier JC, Patin E, Nédélec Y, \ldots, Barreiro LB.
+  \\
+ 
+ \Year{2014\textsuperscript{*}}  &
+  \textbf{Influenza virus drug resistance: a time-sampled population genetics perspective}. \OpenAccess
+  \newline
+  \textit{PLOS Genetics}.
+  \DOI{10.1371/journal.pgen.1004185}; \PMID{24586206} 
+  \newline
+  \Me, Poh YP, Renzette N, Ferrer-Admetlla A, Bank C, \ldots, Jensen JD.
+  \\
+
+ \Year{2013\textsuperscript{\#}}  &
+  \textbf{Robust demographic inference from genomic and SNP data}. \CitationsGold{1350} \OpenAccess
+  \newline
+  \textit{PLOS Genetics}.
+  \DOI{10.1371/journal.pgen.1003905}; \PMID{24204310} 
+  \newline
+  Excoffier L, Dupanloup I, Huerta-Sánchez E, Sousa VC, \Me.
+  \\
+
+  \Year{2013}  &
+  \textbf{Approximate Bayesian computation}. \CitationsGold{695} \OpenAccess
+  \newline
+  \textit{PLOS Computational Biology}.
+  \DOI{10.1371/journal.pcbi.1002803}; \PMID{23341757} 
+  \newline
+  Sunnåker M, Busetto AG, Numminen E, Corander J, \Me, Dessimoz C.
+  \\
+
+  \Year{2012}  &
+  \textbf{Genomic data reveal a complex making of humans}. \OpenAccess
+  \newline
+  \textit{PLOS Genetics}.
+  \DOI{10.1371/journal.pgen.1002837}; \PMID{22829785} 
+  \newline
+  Alves I, Srámková Hanulová A, \Me, Excoffier L.
+  \\
+
+ \Year{2011\textsuperscript{\#}}  &
+  \textbf{fastsimcoal: a continuous-time coalescent simulator of genomic diversity under arbitrarily complex evolutionary scenarios}. \Citations{419} \OpenAccess
+  \newline
+  \textit{Bioinformatics}.
+  \DOI{10.1093/bioinformatics/btr124}; \PMID{21398675} 
+  \newline
+  Excoffier L, \Me.
+  \newline
+  Code: \Website{cmpg.unibe.ch/software/fastsimcoal2}.
+  \\
+ 
+ \Year{2010\textsuperscript{\#}}  &
+  \textbf{Quantifying population structure using the F-model}. 
+  \newline
+  \textit{Molecular Ecology Resources}.
+  \DOI{10.1111/j.1755-0998.2010.02873.x}; \PMID{21565093} 
+  \newline
+  Gaggiotti OE, \Me.
+  \\
+
+ \Year{2009}  &
+  \textbf{Genetic consequences of range expansions}. \CitationsGold{1330} 
+  \newline
+  \textit{Annual Review of Ecology, Evolution, and Systematics}.
+  \DOI{10.1146/annurev.ecolsys.39.110707.173414}; \href{https://www.researchgate.net/publication/229138945_Genetic_Consequences_of_Range_Expansions}{Full text}
+  \newline
+  L Excoffier, \Me, RJ Petit
+  \\
+
+ \Year{2009\textsuperscript{\#}}  &
+  \textbf{Detecting loci under selection in a hierarchically structured population}. \CitationsGold{921} \OpenAccess
+  \newline
+  \textit{Heredity (Edinb)}.
+  \DOI{10.1038/hdy.2009.74}; \PMID{19623208} 
+  \newline
+  Excoffier L, Hofer T, \Me.
+  \newline
+  Code: \Website{cmpg.unibe.ch/software/arlequin35/}.
+  \\
+
+ \Year{2008\textsuperscript{*}}  &
+  \textbf{A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective}. \CitationsGold{2867} \OpenAccess
+  \newline
+  \textit{Genetics}.
+  \DOI{10.1534/genetics.108.092221}; \PMID{18780740} 
+  \newline
+  \Me, Gaggiotti O.
+  \newline
+  \GitHub{mfoll/BayeScan}.
+  \\
+
+ \Year{2006\textsuperscript{*}}  &
+  \textbf{Identifying the environmental factors that determine the genetic structure of populations}. \Citations{418} \OpenAccess
+  \newline
+  \textit{Genetics}.
+  \DOI{10.1534/genetics.106.059451}; \PMID{16951078} 
+  \newline
+  \Me, Gaggiotti O.
+  \newline
+  Code: \Website{leca.osug.fr/-Genomique-des-populations-}. 
+  \\
+
+\end{EntriesTableYear}
+
+*: first/co-first author.
+\newline
+\textsuperscript{\#}: last/co-last/corresponding author.
+\newline
+\Citations{: >20}/year.
+\newline
+\CitationsGold{: >50}/year (on average since publication, source: \href{https://scholar.google.com/citations?hl=en&user=vzZPQj8AAAAJ&view_op=list_works&sortby=pubdate}{Google Scholar}).
+\newline
+\OpenAccess \ : Open Access publication.
+\end{document}
+
+
